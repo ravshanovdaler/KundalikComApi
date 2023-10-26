@@ -14,7 +14,7 @@ class UserModel(AbstractUser):
     user_type = models.CharField(max_length=256, choices=USER_TYPE)
     date_of_birth = models.DateField(null=True)
     phone_number = models.BigIntegerField(null=True)
-    adress = models.CharField(max_length=200,null=True)
+    adress = models.CharField(max_length=200, null=True)
 
     # STUDENTS
 
@@ -23,7 +23,8 @@ class UserModel(AbstractUser):
     dads_last_name = models.CharField(max_length=50, blank=True, null=True)
     moms_last_name = models.CharField(max_length=50, blank=True, null=True)
     parents_phone_number = models.BigIntegerField(null=True, blank=True)
-
+    classstudying = models.ForeignKey(ClassesModel, on_delete=models.SET_NULL, related_name='students', blank=True,
+                                      null=True)
     # TEACHERS
 
     subject = models.CharField(max_length=50, choices=SUBJECTS_LIST, blank=True, null=True)
