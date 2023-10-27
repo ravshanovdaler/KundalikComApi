@@ -73,6 +73,11 @@ class TeacherSerializer(serializers.ModelSerializer):
         if 'request' in self.context and self.context['request'].user.school:
             self.fields['classes'].queryset = ClassesModel.objects.filter(school=self.context['request'].user.school)
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['classes'] = [cls.id for cls in instance.classes.all()]
+        return representation
+
     def validate(self, attrs):
         user_exists = UserModel.objects.filter(username=attrs['username']).exists()
         if user_exists:

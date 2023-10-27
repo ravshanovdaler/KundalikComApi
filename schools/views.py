@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
 from .models import ClassesModel, SchoolsModel
-from .serializers import SchoolSerializer, ClassesSeializer
+from .serializers import SchoolSerializer, ClassesSerializer
 
 
 class SchoolInfoView(RetrieveAPIView):
@@ -10,5 +10,5 @@ class SchoolInfoView(RetrieveAPIView):
 
 class ClassesCreate(CreateAPIView):
     queryset = ClassesModel.objects.all()
-    serializer_class = ClassesSeializer
+    serializer_class = ClassesSerializer
 
